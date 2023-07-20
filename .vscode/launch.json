@@ -3,10 +3,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ng serve",
+      "name": "launch Chrome",
       "type": "chrome",
       "request": "launch",
-      "preLaunchTask": "npm: start",
+      "reAttach": true,
       "url": "http://localhost:4200/"
     },
     {
