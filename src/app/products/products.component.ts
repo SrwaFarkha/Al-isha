@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { NavigationExtras, Router } from '@angular/router';
 import { ProductsService } from '../_service/products.service';
 
 @Component({
@@ -9,16 +9,33 @@ import { ProductsService } from '../_service/products.service';
 })
 export class ProductsComponent {
 
-  products:any[] = [];
+  productList:any;
+  productCategories = [];
+  filteredData: any;
 
 
-  constructor(protected productService: ProductsService){
-
+  constructor(protected productService: ProductsService, private router: Router ){
     this.productService.getProducts().subscribe((result) => {
-      this.products = result;
+      this.productList = result;
+      this.filteredData = result;
+    });
+
+    this.productService.getCategories().subscribe((result) => {
+      this.productCategories = result;
     });
 
   }
 
+  filterProductByCategory(category){
+    
+    this.filteredData = this.productList;
+   
+    if(category != "All")
+    {
+      this.filteredData = this.productList.filter(item => item.categoryName == category.name);
+
+    }
+    
+  }
 
 }

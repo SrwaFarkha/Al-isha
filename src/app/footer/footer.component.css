@@ -1,0 +1,7 @@
+/* Add some basic styling to the footer */
+.footer {
+    background-color: #f0f0f0;
+    padding: 20px;
+    height: 100px;
+    text-align: center;
+}

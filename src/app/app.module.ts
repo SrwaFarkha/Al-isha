@@ -11,6 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './footer/footer.component';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { ProductsRoutingModule } from './products/products-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,16 @@ import { ProductsComponent } from './products/products.component';
     NavbarComponent,
     HomeComponent,
     ProductsComponent,
+    FooterComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ProductsRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AccountService,
