@@ -1,14 +1,149 @@
 
-<div class="container-fluid">
-    <div class="grid-container">
-        <div class="item1">1</div>
-        <div class="item2">2</div>  
-        <div class="item3">
-            <div>
-                <p>{{product?.productName}}</p>
-                <p>{{product?.price}} kr</p>
-
+<div *ngIf="apiDataLoaded" class="container">
+    <div class="grid-container" >
+        <div class="item1">
+            <div class="container">
+                <div class="main-image">
+                    <div >
+                        <div *ngFor="let image of product.images">
+                            <img
+                            class="sidebar-img"
+                            src="./assets/{{ image.url }}.webp"
+                            (click)="changeMainImage(image.url)">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
+        <div class="item2">
+            <div class="product-image">
+                <ng-container *ngIf="!mainImageClicked; else mainImageDisplay">
+                    <img src="./assets/{{ product.images[0].url }}.webp" alt="Product Image">
+                </ng-container>
+
+                <ng-template #mainImageDisplay>
+                    <img src="./assets/{{ mainImage }}.webp" alt="Product Image">
+                </ng-template>
+            </div>
+        </div>
+        <div class="item3">
+            <div>
+                <p><strong>{{product?.productName}}</strong></p>
+                <p>{{product?.price}} kr</p>
+
+                <div class="product-details">
+
+                  <div class="dropdown">
+                      <button style="border: 1px solid black; border-radius: unset; min-width: 200px;" class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          <div class="dropdown-box">
+                              <span >{{ selectedSize || 'Choose Size' }}</span>
+                              <fa-icon [icon]="faChevronDown"></fa-icon>
+                          </div>
+                      </button>
+
+                      <ul style="border-radius: unset; min-width: 200px;" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <ng-container *ngFor="let s of product.sizes">
+                          <li>
+                            <ng-container *ngIf="s.stockBalance === 0; else disabled">
+                              <a class="dropdown-item disabled">
+                                {{ s.size }}
+                              </a>
+                            </ng-container>
+                          </li>
+                          <ng-template #disabled>
+                              <a class="dropdown-item" (click)="handleSizeSelection(s.size)">
+                                {{ s.size }}
+                              </a>
+                            </ng-template>
+                        </ng-container>
+                      </ul>
+                  </div>
+
+
+
+
+
+                  <div class="div-buy-button">
+                      <button class="buy-button"  (click)="addProductToShoppingCart()">
+                          ADD TO CART
+                      </button>
+                  </div>
+
+
+                  <div *ngIf="showSizeNotification" class="notification">
+                    You need to choose a size first.
+                  </div>
+                
+                  <div *ngIf="showAddedNotification" class="notification">
+                    You added a product.
+                  </div>
+                </div>
+
+
+                <br>
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                          <strong>DESCRIPTION</strong>
+                        </button>
+                      </h2>
+                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div *ngIf="product.productDetails" class="accordion-body">
+                            <p><strong>Materials:</strong> {{ product.productDetails.material }} </p>
+                            <p><strong>Fabric:</strong> {{ product.productDetails.fabric }} </p>
+                            <p><strong>Our Model:</strong> {{ product.productDetails.ourModel }} </p>
+                            <p><strong>Model size:</strong> {{ product.productDetails.modelSize }} </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingTwo">
+                        <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <strong>PRODUCT INFORMATION</strong>
+                        </button>
+                      </h2>
+                      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div *ngIf="product.productDetails" class="accordion-body">
+
+                          <p><strong>Color:</strong> {{ product.productDetails.color }}</p>
+                          <p><strong>Fit:</strong> {{ product.productDetails.fit }} </p>
+                          <p><strong>Arm:</strong> {{ product.productDetails.arm }} </p>
+                          <p><strong>Lenght:</strong> {{ product.productDetails.lenght }} </p>
+                          <p><strong>Zipper:</strong> {{ product.productDetails.zipper }} </p>
+                          <p><strong>Article Numbers:</strong> {{ product.productDetails.articleNumber }} </p>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <strong>CARE & ADVICE</strong>
+                        </button>
+                      </h2>
+                      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div *ngIf="product.productDetails" class="accordion-body">
+                           <p><strong>Advice:</strong> {{ product.productDetails.careAdvice }}</p>
+                         </div>
+                    </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingFour">
+                          <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                          <strong>DELEVERY & RETURN </strong>
+                        </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                                <li>Free shipping on purchases over SEK 499, 3-5 working days. </li>
+                                <li>14 day right of return.</li>
+                                <li>Item 3</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
