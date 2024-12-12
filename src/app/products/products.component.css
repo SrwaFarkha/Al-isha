@@ -1,7 +1,7 @@
 .grid-container {
     display: grid;
-    grid-template-columns: 200px auto 200px;
-    padding: 10px;
+    grid-template-columns: 200px auto ;
+    padding: 30px;
   }
   
 .grid-item {
@@ -9,11 +9,118 @@
   border: 1px solid rgba(242, 242, 242, 0.8);
   padding: 5px;
   text-align: left;
+  border: none;
+}
+
+.card{
+  border: none;
+
+}
+
+.card-body{
+  padding-bottom: 6px;
 }
 
 .card-img-top{
   cursor: pointer;
+  height: 400px;
+  border-radius: 6px; /* Rounds the corners of the image */
 }
 
-  
+.card-title{
+  font-size: 18px ;
+  color: #313131;
+}
 
+.col{
+  padding: 0 20px;
+}
+
+
+.line-top{
+  margin: 16px 39px 0 39px; 
+  
+}
+
+.nav-item{
+  color:grey;
+}
+  
+/* .nav-item{
+  text-align: center;
+} */
+
+.priceOfDress{
+  color: grey;
+}
+
+.text{
+  color: #696969;
+}
+
+.title{
+  font-size: 30px;
+  color: #696969;
+  text-align: center;
+  margin: 16px 0 0 0;
+}
+
+@media (max-width: 1040px){
+  .custom-layout > .col {
+    flex: 0 0 50%; /* 2 columns: each takes up 1/2 of the row width */
+    max-width: 50%;
+}
+}
+
+@media (max-width: 770px){
+  .custom-layout > .col {
+    flex: 0 0 100%; /* Each item takes full width of the row */
+    max-width: 100%;
+}
+
+.first-grid-item{
+  display: flex;
+  justify-content: center;
+
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto ;
+}
+
+.line {
+  display: none;
+}
+
+.nav {
+  display: flex; /* Switch to flex display */
+  flex-direction: row; /* Arrange items in a row instead of a column */
+  flex-wrap: wrap; /* Allow wrapping if needed */
+  gap: 1rem; /* Add spacing between items */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+}
+
+@media (height: 1024px){
+  .grid-container{
+    padding: 30px 50px;
+  }
+
+  .custom-layout{
+    padding: 0 100px;
+  }
+}
+
+@media (height: 720px){
+  .grid-container{
+    padding: 30px 50px;
+  }
+
+  .custom-layout{
+    padding: 0 60px;
+  }
+}

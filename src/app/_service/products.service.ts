@@ -20,7 +20,7 @@ export class ProductsService {
 
 
   getCategories(): Observable<any> {
-    return this.api.get("product/category/get-categories")
+    return this.api.get("product/get-categories")
   }
 
 }

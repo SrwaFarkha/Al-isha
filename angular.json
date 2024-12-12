@@ -37,8 +37,8 @@
             "local": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.local.ts"
+                  "replace": "src/environments/environments.ts",
+                  "with": "src/environments/environments.local.ts"
                 }
               ],
               "optimization": {
@@ -83,6 +83,9 @@
             },
             "development": {
               "browserTarget": "Al-isha:build:development"
+            },
+            "local": {
+              "browserTarget": "Al-isha:build:local"
             }
           },
           "defaultConfiguration": "development"
@@ -114,5 +117,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

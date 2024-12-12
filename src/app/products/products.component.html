@@ -8,36 +8,47 @@
 
 
 <div class="container-fluid">
+  
+  <p class="title">{{selectedCategory}}</p>
+  <hr class="line-top">
+
+
     <div class="grid-container">
-        <div class="grid-item">
-            <ul *ngFor="let category of productCategories;let i = index" class="nav flex-column">
+        <div class="grid-item first-grid-item">
+        
+            <ul *ngFor="let category of productCategories;let i = index" class="nav" [ngClass]="{'flex-column': isFlexColumn}">
                 <li *ngIf="i < 1 " class="nav-item">
-                  <a (click)="filterProductByCategory('All')" class="nav-link link-dark" style="cursor: pointer;">All</a>
+                  <a (click)="filterProductByCategory('All')" class="nav-link text" style="cursor: pointer;">All</a>
                 </li>
+                <hr class="line">
 
                 <li class="nav-item">
-                  <a (click)="filterProductByCategory(category)" class="nav-link link-dark" style="cursor: pointer;">{{category.name}}</a>
+                  <a (click)="filterProductByCategory(category)" class="nav-link text" style="cursor: pointer;">{{category.name}}</a>
                 </li>
+
+
               </ul>
         </div>
         <div class="grid-item">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4 custom-layout">
+
                 <div *ngFor="let product of filteredData" class="col">
                   <div class="card">
                     <a href="product-details\{{ product.productId }}">
-                      <img src="./assets/{{ product.images[0].url }}.webp" class="card-img-top" alt="...">
+                      <img src="./assets/image/{{ product.images[0].url }}.webp" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
-                      <h5 class="card-title">{{ product.productName }}</h5>
+                      <p class="card-title">{{ product.productName }}</p>
+                      <p class="priceOfDress">{{ product.price}}kr</p>
                       <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
                     </div>
                   </div>
                 </div>
             </div>
         </div>
-        <div class="grid-item">
+        <!-- <div class="grid-item">
             Empty
-        </div>  
+        </div>   -->
       </div>
 </div>
 
