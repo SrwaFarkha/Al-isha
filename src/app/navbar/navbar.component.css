@@ -1,0 +1,74 @@
+
+
+
+.container-fluid{
+    padding: 2px 20px;
+}   
+
+.navbar{
+    /* background-color: #F4F8FD!important; */
+    background-color:#FCFAF8
+    !important;
+    position: fixed ! important;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the navbar stays above other content */
+    height: 60px; /* Explicit height for consistency */
+
+
+}
+
+.icon {
+    display: flex; /* Enables Flexbox on the container */
+    align-items: center; /* Vertically centers the icon */
+    justify-content: center; /* Optional: Centers horizontally if needed */
+    margin-right: 10px; /* Adds spacing between the icon and the Login link */
+}
+
+
+
+@media (max-width: 1000px){
+
+    
+.shadow-3{
+    box-shadow: 0 2px 2px #00000026, 0 4px 6px #0000001a;
+}
+    #navbarTogglerDemo02{
+        z-index: 1001;
+        background-color: #FCFAF8;
+        border: 1px;
+        flex-direction: column;
+        left:0;
+        /* display:flex; */
+        margin-top:10px;
+    }
+    
+.container-fluid{
+    padding-left: 0;
+}
+
+.navbar-toggler{
+    margin-left: 20px;
+}
+
+.navbar-nav{
+    display: flex;
+    gap: 10px; /* Add spacing between icons */
+    /* align-items: center; */
+    padding-left: 20px;
+}
+
+.navbar-right{
+    display: flex; /* Enables Flexbox on the container */
+    align-items: center; /* Vertically centers the icon */
+    position: absolute;
+    right: 16px;
+
+}
+
+.icon{
+    gap: 20px; /* Add spacing between icons */
+
+}
+
+}

@@ -1,7 +1,25 @@
 /* Add some basic styling to the footer */
 .footer {
-    background-color: #f0f0f0;
+    background-color: #F4F8FD!important;
     padding: 20px;
-    height: 100px;
+    height: 70px;
     text-align: center;
+    display: flex;
+    /* Add some basic styling to the footer */
 }
+
+/* Add some basic styling to the footer */
+.footer {
+    background-color: #FCFAF8!important;
+    padding: 20px;
+    height: 70px;
+    text-align: center;
+    display: flex;
+    justify-content: center; /* Center all items */
+    gap: 30px; /* Reduce spacing between items */
+
+}
+
+
+/* 696969 */
+

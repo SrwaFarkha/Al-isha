@@ -36,6 +36,11 @@
   padding: 0 20px;
 }
 
+.container-fluid{
+    padding-top: 60px; /* Same as the navbar height */
+
+}
+
 
 .line-top{
   margin: 16px 39px 0 39px; 
