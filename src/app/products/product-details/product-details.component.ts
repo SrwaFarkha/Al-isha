@@ -25,18 +25,7 @@ export class ProductDetailsComponent {
   @Input() any; // Assume product is passed as input
   selectedImage: string;
 
-  
 
-  
-  // constructor(protected productService: ProductsService, protected route: ActivatedRoute) {
-  //   this.productService.getProduct(this.productId).subscribe((result) => {
-  //     this.productList = result;
-  //     this.filteredData = result;
-  //     this.selectedImage = this.product?.images?.[0]?.url || '';
-  //     console.log(this.filteredData)
-  //   });
-  // }
-  
   constructor(protected productService: ProductsService, protected route: ActivatedRoute) {
     this.route.params.subscribe((params) => {
       const productId = params['productId'];

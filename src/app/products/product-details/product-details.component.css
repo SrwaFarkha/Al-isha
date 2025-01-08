@@ -1,9 +1,10 @@
 .buy-button{
   height: 48px;
   width: 100%;
-  border: 1px solid rgba(210, 210, 210, 0.8);
-  background-color: transparent;
-  font-size: 20px;
+  color:white;
+  border: 1px solid #3e3e3e;
+  background-color: #3e3e3e;
+  font-size: 16px;
 }
 
 .container{
@@ -24,9 +25,9 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: 150px 546px 400px;
+    grid-template-columns: 150px 546px 380px;
     gap: 10px;
-    background-color: #2196F3;
+    /* background-color: #2196F3; */
   }
   
   .grid-container > div {
