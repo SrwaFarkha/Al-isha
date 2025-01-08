@@ -9,6 +9,7 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
+  { path: 'product-details/:productId', component: ProductDetailsComponent },
 
   { path: 'login', component: LoginComponent },
 ];

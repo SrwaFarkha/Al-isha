@@ -1,48 +1,52 @@
-<!-- 
-<div *ngIf="apiDataLoaded" class="container">
+<div *ngIf="product; else loading" class="container">
     <div class="grid-container" >
-        <div class="item1">
+        <div class="item1"> 
             <div class="container">
-                <div class="main-image">
-                    <div >
-                        <div *ngFor="let image of product.images">
-                            <img
-                            class="sidebar-img"
-                            src="./assets/{{ image.url }}.webp"
-                            (click)="changeMainImage(image.url)">
-                        </div>
+                <div class="image-side">
+                    <div *ngFor="let image of product.images">
+                        <img
+                        class="sidebar-img"
+                        src="./assets/image/{{ image.url }}.webp"
+                        (click)="changeMainImage(image.url)"
+
+                        >
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
         <div class="item2">
             <div class="product-image">
-                <ng-container *ngIf="!mainImageClicked; else mainImageDisplay">
-                    <img src="./assets/{{ product.images[0].url }}.webp" alt="Product Image">
-                </ng-container>
 
-                <ng-template #mainImageDisplay>
-                    <img src="./assets/{{ mainImage }}.webp" alt="Product Image">
-                </ng-template>
+              <ng-container *ngIf="product?.images?.length > 0"> 
+                <img class="image-middle" 
+                [src]="'./assets/image/' + (selectedImage || product.images[0].url) + '.webp'" 
+                alt="Product Image">  
+               </ng-container>
             </div>
         </div>
         <div class="item3">
             <div>
-                <p><strong>{{product?.productName}}</strong></p>
-                <p>{{product?.price}} kr</p>
+                <p class="product-name">{{product?.productName}}</p>
+                <p class="product-price">{{product?.price}} kr</p>
 
                 <div class="product-details">
-
                   <div class="dropdown">
-                      <button style="border: 1px solid black; border-radius: unset; min-width: 200px;" class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          <div class="dropdown-box">
-                              <span >{{ selectedSize || 'Choose Size' }}</span>
-                              <fa-icon [icon]="faChevronDown"></fa-icon>
-                          </div>
+                      <button 
+                        style="border-radius: unset;" 
+                        class="btn" 
+                        type="button" 
+                        id="dropdownMenuButton1" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                        <div class="dropdown-box">
+                          <span >{{ selectedSize || 'Choose Size' }}</span>
+                          <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#69696"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z" fill="#696969"></path> </g></svg>
+                        </div>
                       </button>
-
-                      <ul style="border-radius: unset; min-width: 200px;" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <ng-container *ngFor="let s of product.sizes">
+                      <ul style="border-radius: unset; min-width: 200px;" 
+                      class="dropdown-menu" 
+                      aria-labelledby="dropdownMenuButton1">
+                        <ng-container *ngFor="let s of product?.sizeStocks">
                           <li>
                             <ng-container *ngIf="s.stockBalance === 0; else disabled">
                               <a class="dropdown-item disabled">
@@ -58,14 +62,10 @@
                         </ng-container>
                       </ul>
                   </div>
-
-
-
-
-
+                 
                   <div class="div-buy-button">
                       <button class="buy-button"  (click)="addProductToShoppingCart()">
-                          ADD TO CART
+                          ADD
                       </button>
                   </div>
 
@@ -144,6 +144,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div> -->
+        </div> 
+    </div> 
+</div> 
+
+<ng-template #loading>
+  <div class="loading-container">
+    <p>Loading product details...</p>
+  </div>
+</ng-template>

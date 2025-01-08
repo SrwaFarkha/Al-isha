@@ -16,10 +16,10 @@
     <div class="grid-container">
         <div class="grid-item first-grid-item">
         
-            <ul *ngFor="let category of productCategories;let i = index" class="nav" [ngClass]="{'flex-column': isFlexColumn}">
+            <ul *ngFor="let category of productCategories;let i = index" class="nav flex-column">
                 <li *ngIf="i < 1 " class="nav-item">
                   <a (click)="filterProductByCategory('All')" class="nav-link text" style="cursor: pointer;">All</a>
-                </li>
+                <!-- </li> -->
                 <hr class="line">
 
                 <li class="nav-item">
@@ -34,7 +34,9 @@
 
                 <div *ngFor="let product of filteredData" class="col">
                   <div class="card">
-                    <a href="product-details\{{ product.productId }}">
+                    <!-- <a href="product-details\{{ product.productId }}"> -->
+                    <a [routerLink]="['/product-details', product.productId]">
+
                       <img src="./assets/image/{{ product.images[0].url }}.webp" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
