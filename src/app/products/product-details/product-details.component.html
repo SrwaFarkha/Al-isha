@@ -103,10 +103,9 @@
                       </h2>
                       <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div *ngIf="product.productDetails" class="accordion-body">
-                            <p><strong>Materials:</strong> {{ product.productDetails.material }} </p>
-                            <p><strong>Fabric:</strong> {{ product.productDetails.fabric }} </p>
-                            <p><strong>Our Model:</strong> {{ product.productDetails.ourModel }} </p>
-                            <p><strong>Model size:</strong> {{ product.productDetails.modelSize }} </p>
+                            <p *ngFor="let descriptionFields of descriptionFields" [hidden]="!product.productDetails.description[descriptionFields.key]">
+                              <strong>{{ descriptionFields.label }}:</strong> {{ product.productDetails.description[descriptionFields.key] }}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -119,12 +118,9 @@
                       <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                         <div *ngIf="product.productDetails" class="accordion-body">
 
-                          <p><strong>Color:</strong> {{ product.productDetails.color }}</p>
-                          <p><strong>Fit:</strong> {{ product.productDetails.fit }} </p>
-                          <p><strong>Arm:</strong> {{ product.productDetails.arm }} </p>
-                          <p><strong>Lenght:</strong> {{ product.productDetails.lenght }} </p>
-                          <p><strong>Zipper:</strong> {{ product.productDetails.zipper }} </p>
-                          <p><strong>Article Numbers:</strong> {{ product.productDetails.articleNumber }} </p>
+                          <p *ngFor="let infoField of productInfoFields" [hidden]="!product.productDetails.productInformation[infoField.key]">
+                            <strong>{{ infoField.label }}:</strong> {{ product.productDetails.productInformation[infoField.key] }}
+                        </p>
 
                         </div>
                       </div>
@@ -137,8 +133,9 @@
                       </h2>
                       <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                         <div *ngIf="product.productDetails" class="accordion-body">
-                           <p><strong>Advice:</strong> {{ product.productDetails.careAdvice }}</p>
-                         </div>
+                          <p *ngFor="let adviceField of careAndAdviceFields" [hidden]="!product.productDetails.careAndAdvice[adviceField.key]">
+                            <strong>{{ adviceField.label }}:</strong> {{ product.productDetails.careAndAdvice[adviceField.key] }}
+                        </p>                         </div>
                     </div>
                     </div>
                     <div class="accordion-item">

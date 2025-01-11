@@ -26,6 +26,27 @@ export class ProductDetailsComponent {
   selectedImage: string;
 
 
+
+  descriptionFields = [
+    { label: 'Materials', key: 'material' },
+    { label: 'Fabric', key: 'fabric' },
+    { label: 'Our Model', key: 'ourModel' },
+    { label: 'Model Size', key: 'modelSize' }
+  ];
+
+  productInfoFields = [
+    { label: 'Color', key: 'color' },
+    { label: 'Fit', key: 'fit' },
+    { label: 'Arm', key: 'arm' },
+    { label: 'Length', key: 'lenght' },
+    { label: 'Zipper', key: 'zipper' },
+    { label: 'Article Numbers', key: 'articleNumber' }
+  ];
+
+  careAndAdviceFields = [
+    { label: 'Advice', key: 'careAdvice' }
+  ];
+
   constructor(protected productService: ProductsService, protected route: ActivatedRoute) {
     this.route.params.subscribe((params) => {
       const productId = params['productId'];
