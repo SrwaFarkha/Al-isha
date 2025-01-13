@@ -6,25 +6,24 @@
 }   
 
 .navbar{
-    /* background-color: #F4F8FD!important; */
+
     background-color:#FCFAF8
     !important;
     position: fixed ! important;
     top: 0;
     width: 100%;
-    z-index: 1000; /* Ensure the navbar stays above other content */
-    height: 60px; /* Explicit height for consistency */
+    z-index: 1000; 
+    height: 60px; 
 
 
 }
 
 .icon {
-    display: flex; /* Enables Flexbox on the container */
-    align-items: center; /* Vertically centers the icon */
-    justify-content: center; /* Optional: Centers horizontally if needed */
-    margin-right: 10px; /* Adds spacing between the icon and the Login link */
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-right: 10px; 
 }
-
 
 
 @media (max-width: 1000px){
@@ -39,7 +38,6 @@
         border: 1px;
         flex-direction: column;
         left:0;
-        /* display:flex; */
         margin-top:10px;
     }
     
@@ -53,22 +51,22 @@
 
 .navbar-nav{
     display: flex;
-    gap: 10px; /* Add spacing between icons */
-    /* align-items: center; */
+    gap: 10px; 
+  
     padding-left: 20px;
 }
 
 .navbar-right{
-    display: flex; /* Enables Flexbox on the container */
-    align-items: center; /* Vertically centers the icon */
+    display: flex;
+    align-items: center; 
     position: absolute;
     right: 16px;
 
 }
 
 .icon{
-    gap: 20px; /* Add spacing between icons */
+    gap: 20px; 
 
 }
 
-}
+} 

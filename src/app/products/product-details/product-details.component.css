@@ -1,3 +1,10 @@
+#dropdownMenuButton1{
+  height: 48px;
+  width: 100%;
+  border: 1px solid rgba(210, 210, 210, 0.8)
+  !important;
+}
+
 .accordion-body{
   font-size: 14px;
   text-align: left;
@@ -6,6 +13,13 @@
 
 .accordion-button{
   font-size: 15px;
+}
+
+.accordion-button:not(.collapsed) {
+  color: inherit; 
+  background-color: transparent;
+  box-shadow: none;
+  outline: none; 
 }
 
 .buy-button{
@@ -21,13 +35,6 @@
   padding: 60px 0 0 0;
 }
 
-#dropdownMenuButton1{
-  height: 48px;
-  width: 100%;
-  border: 1px solid rgba(210, 210, 210, 0.8)
-  !important;
-}
-
 .dropdown{
   padding-bottom: 20px ;
 
@@ -35,33 +42,66 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: 150px 546px 380px;
+    /* grid-template-columns: 150px 546px 380px; */
+    grid-template-columns: 10% 53% 37%;
+
     gap: 10px;
-    /* background-color: #2196F3; */
-  }
+}
   
-  .grid-container > div {
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
+.grid-container > div {
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.image-middle{
+  width: 100%;
+  padding: 0 50px 0 50px;
+}
+
+.product-name{
+  font-size: 30px;
+  
+}
+ 
+.product-price{
+  font-size: 20px;
+}
+
+.sidebar-img{
+  width: 90px;
+  padding: 10px 0;
+}
+
+
+/* Media Query for Small Screens */
+@media screen and (max-width: 768px) {
+  .div-buy-button{
+
+    margin: 0 10px 0 10px; 
   }
 
-  .sidebar-img{
-    width: 90px;
-    padding: 10px 0;
+  .dropdown{
+    margin: 0 10px 0 10px; 
+
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .item1 {
+    display: none;
+  }
+
+  .item2,
+  .item3 {
+    display: block; 
   }
 
   .image-middle{
-    width: 400px;
+    width: 100%;
+    padding: 0 10px 0 10px;
   }
-
- 
-.product-name{
- font-size: 30px;
- 
 }
-
-  .product-price{
-    font-size: 20px;
-  }

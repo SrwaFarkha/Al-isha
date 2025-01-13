@@ -63,7 +63,7 @@
                           <li>
                             <ng-container *ngIf="s.stockBalance === 0; else disabled">
                               <a class="dropdown-item disabled">
-                                {{ s.size }}
+                                {{ s.size }} (Out of stock)
                               </a>
                             </ng-container>
                           </li>
@@ -101,7 +101,7 @@
                           <strong>DESCRIPTION</strong>
                         </button>
                       </h2>
-                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" >
                         <div *ngIf="product.productDetails" class="accordion-body">
                             <p *ngFor="let descriptionFields of descriptionFields" [hidden]="!product.productDetails.description[descriptionFields.key]">
                               <strong>{{ descriptionFields.label }}:</strong> {{ product.productDetails.description[descriptionFields.key] }}
@@ -115,7 +115,7 @@
                         <strong>PRODUCT INFORMATION</strong>
                         </button>
                       </h2>
-                      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" >
                         <div *ngIf="product.productDetails" class="accordion-body">
 
                           <p *ngFor="let infoField of productInfoFields" [hidden]="!product.productDetails.productInformation[infoField.key]">
@@ -131,7 +131,7 @@
                         <strong>CARE & ADVICE</strong>
                         </button>
                       </h2>
-                      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" >
                         <div *ngIf="product.productDetails" class="accordion-body">
                           <p *ngFor="let adviceField of careAndAdviceFields" [hidden]="!product.productDetails.careAndAdvice[adviceField.key]">
                             <strong>{{ adviceField.label }}:</strong> {{ product.productDetails.careAndAdvice[adviceField.key] }}
@@ -144,13 +144,13 @@
                           <strong>DELEVERY & RETURN </strong>
                         </button>
                         </h2>
-                        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour">
                           <div class="accordion-body">
-                                <li>Free shipping on purchases over SEK 499, 3-5 working days. </li>
-                                <li>14 day right of return.</li>
-                                <li>Item 3</li>
-                            </div>
-                        </div>
+                              <div>Free shipping on purchases over SEK 499, 3-5 working days.</div>
+                              <div>14-day right of return.</div>
+                          </div>
+                      </div>
+                      
                     </div>
                 </div>
             </div>
