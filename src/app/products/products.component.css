@@ -32,6 +32,8 @@
   color: #313131;
 }
 
+
+
 .col{
   padding: 0 20px;
 }
@@ -85,7 +87,6 @@
   display: inline-flex;
   justify-content: center;
   height: 50px;
-
 }
 
 .grid-container {
@@ -118,3 +119,9 @@
     padding: 0 60px;
   }
 }
+
+@media screen and (max-width: 333px) {
+  .first-grid-item{
+    width:206px;
+  }
+  }
