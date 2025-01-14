@@ -1,56 +1,33 @@
-
-
-<!-- <div *ngFor="let product of products">
-    <p>{{product.productName}}</p>
-
-</div> -->
-
-
-
 <div class="container-fluid">
-  
   <p class="title">{{selectedCategory}}</p>
   <hr class="line-top">
-
-
     <div class="grid-container">
         <div class="grid-item first-grid-item">
-        
             <ul *ngFor="let category of productCategories;let i = index" class="nav flex-column">
                 <li *ngIf="i < 1 " class="nav-item">
                   <a (click)="filterProductByCategory('All')" class="nav-link text" style="cursor: pointer;">All</a>
-                <!-- </li> -->
+                </li>
                 <hr class="line">
-
                 <li class="nav-item">
                   <a (click)="filterProductByCategory(category)" class="nav-link text" style="cursor: pointer;">{{category.name}}</a>
                 </li>
-
-
               </ul>
         </div>
         <div class="grid-item">
             <div class="row row-cols-1 row-cols-md-3 g-4 custom-layout">
-
                 <div *ngFor="let product of filteredData" class="col">
                   <div class="card">
-                    <!-- <a href="product-details\{{ product.productId }}"> -->
                     <a [routerLink]="['/product-details', product.productId]">
-
                       <img src="./assets/image/{{ product.images[0].url }}.webp" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
                       <p class="card-title">{{ product.productName }}</p>
                       <p class="priceOfDress">{{ product.price}}kr</p>
-                      <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
                     </div>
                   </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="grid-item">
-            Empty
-        </div>   -->
       </div>
 </div>
 
