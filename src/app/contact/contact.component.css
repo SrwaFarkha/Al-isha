@@ -1,0 +1,47 @@
+.grid-container {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 5px;
+  padding: 60px 50px 10px 50px;
+  text-align:center;
+  height: 90vh; 
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-size: 30px;
+}
+
+.title{
+    font-size: 25px;
+    padding: 20px;
+
+}
+
+.email{
+    font-size: 17px;
+}
+
+.item1{
+    padding: 20px;
+}
+.item2{
+    padding: 20px;
+}
+
+.icons{
+  text-align: center;
+  padding: 40px;
+}
+
+/* @media screen and (max-width: 768px) {
+  .grid-container{
+    height:100%;
+    display: grid; 
+    grid-template-rows: auto auto;
+    height: 90vh; 
+  }
+
+
+} */

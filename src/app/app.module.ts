@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { ProductsRoutingModule } from './products/products-routing.module';
+import { ContactComponent } from './contact/contact.component';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { ProductsRoutingModule } from './products/products-routing.module';
     ProductsComponent,
     FooterComponent,
     ProductDetailsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

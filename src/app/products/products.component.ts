@@ -31,7 +31,6 @@ export class ProductsComponent {
 
     this.productService.getCategories().subscribe((result) => {
       this.productCategories = result;
-      console.log(this.productCategories);
     });
 
   }
