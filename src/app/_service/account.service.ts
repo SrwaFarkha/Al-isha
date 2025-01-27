@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ApiService } from './api.service';
-// import { JwtService } from './jwt.service';
-// import { LocalstoreService } from '../_shared/localstore.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +9,55 @@ export class AccountService {
 
   constructor(private api : ApiService) { }
 
-      // POST /api/token (Generates a JWT for customer. Valid for 24 hours.)
-    /**
-     * Method to login.
-     * @param userCredentials
-     */
-    getToken(userCredentials: string): Observable<any> {
-      return this.api.post('token', userCredentials)
-        .pipe(map(data => {
-          if(data){
-            // this.jwtService.saveToken(data)
-          }
-          return data;
-        }))
-    }
+      /**
+   * Method to get the shopping cart by account ID.
+   * @param accountId - The ID of the account
+   */
+  getShoppingCart(accountId: number): Observable<any> {
+    return this.api.get(`shoppingcart/${accountId}`);
+  }
+
+   /**
+   * Method to add a product to the shopping cart.
+   * @param cartItem - The product details to add to the cart
+   */
+   addProductToCart(cartItem: any): Observable<any> {
+    return this.api.post('shoppingcart/add', cartItem);
+  }
+
+  /**
+   * Method to empty the shopping cart.
+   * @param accountId - The ID of the account
+   */
+  emptyShoppingCart(accountId: number): Observable<any> {
+    return this.api.post(`shoppingcart/${accountId}/empty`, {});
+  }
+
+  /**
+   * Method to increase the quantity of a product in the cart.
+   * @param accountId - The ID of the account
+   * @param productId - The ID of the product
+   */
+  increaseCartProduct(accountId: number, productId: number): Observable<any> {
+    return this.api.post(`shoppingcart/${accountId}/increase/${productId}`, {});
+  }
+
+  /**
+   * Method to decrease the quantity of a product in the cart.
+   * @param accountId - The ID of the account
+   * @param productId - The ID of the product
+   */
+  decreaseCartProduct(accountId: number, productId: number): Observable<any> {
+    return this.api.post(`shoppingcart/${accountId}/decrease/${productId}`, {});
+  }
+
+  /**
+   * Method to delete a specific item from the shopping cart.
+   * @param accountId - The ID of the account
+   * @param productId - The ID of the product
+   */
+  deleteCartItem(accountId: number, productId: number): Observable<any> {
+    return this.api.post(`shoppingcart/${accountId}/delete/${productId}`, {});
+  }
 
 }

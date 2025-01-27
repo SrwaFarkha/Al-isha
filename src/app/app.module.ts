@@ -17,6 +17,8 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { ProductsRoutingModule } from './products/products-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { LoginService } from './_service/login.service';
+import { JwtService } from './_service/jwt.service';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
   providers: [
     AccountService,
     ApiService,
+    LoginService,
+    JwtService,
   ],
   bootstrap: [AppComponent]
 })

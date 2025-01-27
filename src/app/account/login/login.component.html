@@ -1,3 +1,38 @@
+<div class="grid-container">
+  
+  <div class="form-container">
+    <div class="title">
+      Log in 
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label for="uname">Email</label>
+      <input
+      type="text"
+      id="uname"
+      placeholder="Enter Email"
+      formControlName="email"
+      required
+    />      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <small class="error">Valid email is required.</small>
+      </div>
+      <label for="psw">Password</label>
+      <input
+      type="password"
+      id="psw"
+      placeholder="Enter Password"
+      formControlName="password"
+      required
+    />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- 
+
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div>
       <label for="email">Email:</label>
@@ -8,4 +43,4 @@
       <input type="password" formControlName="password" id="password">
     </div>
     <button type="submit" [disabled]="loginForm.invalid">Login</button>
-  </form>
+  </form> -->

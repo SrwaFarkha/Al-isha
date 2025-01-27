@@ -47,6 +47,13 @@ export class ProductDetailsComponent {
     { label: 'Advice', key: 'careAdvice' }
   ];
 
+  sizeMap = {
+    0: 'XS',
+    1: 'S',
+    2: 'M',
+    3: 'L',
+  };
+
   constructor(protected productService: ProductsService, protected route: ActivatedRoute) {
     this.route.params.subscribe((params) => {
       const productId = params['productId'];
@@ -61,26 +68,60 @@ export class ProductDetailsComponent {
     });
   }
   
+  
 
     // Handle the selection of a size
-    handleSizeSelection(size): void {
-      this.selectedSize = size;
+    handleSizeSelection(size: number): void {
+      this.selectedSize = this.sizeMap[size]; // Convert integer to string size
       this.showSizeNotification = false; // Hide notification if a size is selected
       console.log(`Selected size: ${size}`);
     }
+    
+
+    // addProductToCart(): void {
+    //   if (!this.selectedSize) {
+    //     this.showSizeNotification = true; // Show notification if no size is selected
+    //     console.log('Please select a size first.');
+    //     return;
+    //   }
+
+    // // Logic to add product to the cart
+    // this.showAddedNotification = true; // Show added notification
+    // console.log(`Product added to cart: ${this.product?.productName}, Size: ${this.selectedSize}`);
+  
+    // }
 
     addProductToCart(): void {
       if (!this.selectedSize) {
-        this.showSizeNotification = true; // Show notification if no size is selected
+        // Show notification if no size is selected
+        this.showSizeNotification = true;
+        this.showAddedNotification = false; // Ensure other notifications are hidden
         console.log('Please select a size first.');
         return;
       }
-
-    // Logic to add product to the cart
-    this.showAddedNotification = true; // Show added notification
-    console.log(`Product added to cart: ${this.product?.productName}, Size: ${this.selectedSize}`);
-  
+    
+      // Example logic for adding the product to the cart
+      const cartItem = {
+        productId: this.product?.productId,
+        productName: this.product?.productName,
+        price: this.product?.price,
+        size: this.selectedSize,
+        quantity: 1, // Default quantity; you can customize this
+      };
+    
+      // Here, you would call a service method to add the product to the backend cart
+      this.addProductToShoppingCart.addToCart(cartItem).subscribe({
+        next: () => {
+          this.showSizeNotification = false; // Hide size notification
+          this.showAddedNotification = true; // Show added notification
+          console.log(`Product added to cart: ${cartItem.productName}, Size: ${cartItem.size}`);
+        },
+        error: (error) => {
+          console.error('Error adding product to cart:', error);
+        }
+      });
     }
+    
 
 
   // Method to change the main image

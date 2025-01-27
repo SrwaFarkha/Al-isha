@@ -63,13 +63,13 @@
                           <li>
                             <ng-container *ngIf="s.stockBalance === 0; else disabled">
                               <a class="dropdown-item disabled">
-                                {{ s.size }} (Out of stock)
+                                {{ sizeMap[s.size] }} (Out of stock)
                               </a>
                             </ng-container>
                           </li>
                           <ng-template #disabled>
                               <a class="dropdown-item" (click)="handleSizeSelection(s.size)">
-                                {{ s.size }}
+                                {{ sizeMap[s.size] }}
                               </a>
                             </ng-template>
                         </ng-container>

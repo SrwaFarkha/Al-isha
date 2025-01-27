@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { AccountService } from 'src/app/_service/account.service';
-
+import { Router } from '@angular/router';
+import { JwtService } from 'src/app/_service/jwt.service';
+import { LoginService } from 'src/app/_service/login.service';
 
 
 @Component({
@@ -9,37 +10,38 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   loginForm!: FormGroup;
 
-  //private accountService: AccountService
-  constructor(private formBuilder: FormBuilder) { }
-
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private fb: FormBuilder,
+    private jwtService: JwtService
+    
+  ) {
+    this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required]],
     });
+    
   }
-
+  
   onSubmit() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    const email = this.loginForm.value.email;
-    const password = this.loginForm.value.password;
-
     if (this.loginForm.valid) {
-      // this.accountService.getToken(this.loginForm.value).subscribe(res => {
-      //   // this.getAccountDetails();
-      // })
-      
+        this.loginService.getToken(this.loginForm.value).subscribe({
+          next: (response: any) => {
+            if(response){
+              const token = response.token; 
+              this.jwtService.saveToken(token);
+
+              this.router.navigate(['/account']);
+            }
+          },
+        });
     } else {
-      console.log('Invalid credentials');
-      // Display an error message
+      console.log('Form is invalid:', this.loginForm.errors);
     }
   }
-
 }
