@@ -5,6 +5,7 @@ import { JwtService } from 'src/app/_service/jwt.service';
 import { LoginService } from 'src/app/_service/login.service';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,6 +14,9 @@ import { LoginService } from 'src/app/_service/login.service';
 export class LoginComponent {
 
   loginForm!: FormGroup;
+
+  loginErrorText: string | null = null;
+
 
   constructor(
     private loginService: LoginService,
@@ -30,18 +34,27 @@ export class LoginComponent {
   
   onSubmit() {
     if (this.loginForm.valid) {
-        this.loginService.getToken(this.loginForm.value).subscribe({
-          next: (response: any) => {
-            if(response){
-              const token = response.token; 
-              this.jwtService.saveToken(token);
-
-              this.router.navigate(['/account']);
-            }
-          },
-        });
+      this.loginService.getToken(this.loginForm.value).subscribe({
+        next: (response: any) => {
+          if (response) {
+            console.log(response)
+            const token = response.token; 
+            this.jwtService.saveToken(token);
+            this.router.navigate(['/account']);
+          }
+        },
+        error: (error: any) => {
+          if (error.status === 404) {
+            this.loginErrorText = 'Incorrect email or password';
+          } else {
+            console.error('An error occurred:', error);
+          }
+        }
+      });
     } else {
       console.log('Form is invalid:', this.loginForm.errors);
     }
   }
+  
+
 }

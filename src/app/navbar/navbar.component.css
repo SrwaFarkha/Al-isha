@@ -3,6 +3,7 @@
 
 .container-fluid{
     padding: 2px 20px;
+ 
 }   
 
 .navbar{
@@ -15,6 +16,15 @@
     z-index: 1000; 
     height: 60px; 
 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+     /* flex-wrap: wrap;   */
+    /* padding: 20px; */
+    background-color: #FCFAF8;
+    /* min-height: 70px; */
+    box-sizing: border-box; 
+    /* gap: 20px;  */
 
 }
 

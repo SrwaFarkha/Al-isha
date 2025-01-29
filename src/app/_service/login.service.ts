@@ -14,5 +14,5 @@ export class LoginService {
 
     getToken(credentials: { email: string, password: string }): Observable<any> {
       return this.api.post('token', credentials)
-  }
+    }
 }

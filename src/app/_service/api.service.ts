@@ -5,7 +5,7 @@ import {
   HttpHeaders,
   HttpParams,
 } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { Observable, of, throwError } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 import { Router } from "@angular/router";
 
@@ -82,6 +82,20 @@ export class ApiService {
    * @param handleError Whether to handle errors (true by default)
    * @returns An Observable emitting the processed API response
    */
+  // post(path: string, body: Object = {}, options: Object = {}, handleError = true): Observable<any> {
+  //   return this.http
+  //     .post(`${environment.APIBasePath}${path}`, body, {
+  //       ...options,
+  //       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  //     })
+  //     .pipe(map(response => {
+  //        return response;
+  //       }),
+  //       catchError(error => {
+  //         return error
+  //       })
+  //     );
+  // }
   post(path: string, body: Object = {}, options: Object = {}, handleError = true): Observable<any> {
     return this.http
       .post(`${environment.APIBasePath}${path}`, body, {
@@ -89,18 +103,18 @@ export class ApiService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       })
       .pipe(
-        map(response => {
-         return response;
-        }),
+        map(response => response),
         catchError(error => {
           if (handleError) {
-            console.error('An error occurred:', error);
-            alert('An error occurred while making the request.');
+            // Rethrow the error to be handled in the calling code
+            return throwError(() => error);
           }
-          return throwError(() => error);
+          // Optionally handle the error here if needed
+          return of(null);
         })
       );
   }
+  
 
 
   /**

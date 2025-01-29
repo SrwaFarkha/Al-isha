@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center; 
     align-items: center;
-    flex-wrap: wrap; 
+     flex-wrap: wrap;  
     padding: 20px;
     background-color: #FCFAF8;
     min-height: 70px;
@@ -13,4 +13,10 @@
 
 .footer p {
     margin: 0; 
+}
+
+
+/* Specific override for login page */
+.login-component .footer {
+    flex-wrap: nowrap !important; /* Remove wrapping specifically for login page */
 }
