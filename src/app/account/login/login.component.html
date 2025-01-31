@@ -1,10 +1,7 @@
 <div class="grid-container">
-  
   <div class="form-container">
     <div class="title"> Log in </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
-
       <label for="uname">Email</label>
       <input
         type="text"
@@ -14,12 +11,12 @@
         required
       />
       <div 
-      class="error-hidden" 
-      [class.hidden]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-    </div>
-    <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-      <small>Valid email is required.</small>
-    </div>
+        class="error-hidden" 
+        [class.hidden]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+      </div>
+      <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <small>Valid email is required.</small>
+      </div>
 
       <label for="psw">Password</label>
       <input
@@ -29,40 +26,34 @@
         formControlName="password"
         required
       />
-      <div 
-        class="error-hidden" 
-        [class.hidden]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+      <div class="container">
+        <div class="left">
+          <div 
+              class="error-hidden" 
+              [class.hidden]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            </div>
+            <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              <small>Password is required.</small>
+            </div>
+        </div>
+        <div class="right">
+          <div class="forgotten" (click)="onForgotPassword()">
+            Forgotten your password?
+          </div>
+        </div>
       </div>
-      <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-        <small>Password is required.</small>
-      </div>
+  
 
       <div 
-      class="error-hidden2" 
-      [class.hidden]="loginErrorText">
-    </div>
-    <div class="error" *ngIf="loginErrorText">
-      <small>{{ loginErrorText }}</small>
-    </div>
+        class="error-hidden2" 
+        [class.hidden]="loginErrorText">
+      </div>
+      <div class="error" *ngIf="loginErrorText">
+        <small>{{ loginErrorText }}</small>
+      </div>
 
       <button type="submit">Login</button>
+
     </form>
   </div>
 </div>
-
-
-
-
-<!-- 
-
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" formControlName="email" id="email">
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" formControlName="password" id="password">
-    </div>
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
-  </form> -->

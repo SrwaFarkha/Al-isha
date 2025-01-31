@@ -1,7 +1,7 @@
 .error{
   color:red;
-  text-align: left; /* Align text within the container to the left */
-  margin-left: 0; /* Ensure it's left-aligned */
+  text-align: left;
+  margin-left: 0; 
 
 }
 
@@ -15,7 +15,7 @@
 }
 
 .hidden {
-  display: none; /* Hide the element when the 'hidden' class is applied */
+  display: none;
 }
 
 .grid-container{
@@ -38,7 +38,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 400px;
     text-align: center;
   }
   
@@ -85,4 +85,28 @@
   .title{
     color:#696969;
     font-size: 24px;
+  }
+
+
+  .container {
+    display: flex;
+    justify-content: space-between; /* Pushes left to the left and right to the right */
+    align-items: center; /* Aligns items vertically */
+    width: 100%;
+  }
+  
+  .left {
+    flex: 1; /* Takes available space */
+    text-align: left; /* Aligns text to the left */
+  }
+  
+  .right {
+    text-align: right; /* Aligns text to the right */
+  }
+
+  .forgotten{
+    color: #3B82F6;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
   }
