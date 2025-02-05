@@ -1,0 +1,50 @@
+.grid-container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Changed from height to min-height */
+    padding: 20px; /* Added padding to prevent cut-off */
+    color: #696969;
+
+
+}
+
+
+
+.form-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 10px; /* Add spacing between elements */
+    background: #f9f9f9;
+    padding: 80px;
+    padding-top: 50px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    width: 500px; /* Set a fixed width */
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: black; /* Text color remains black */
+    outline: none; 
+}
+
+.two-column {
+    display: flex;
+    gap: 10px;
+}
+
+/* Ensure inputs take equal width inside two-column div */
+.two-column div {
+    flex: 1;
+}
+
+.title{
+    text-align: center;
+    font-size: 22px;
+
+}

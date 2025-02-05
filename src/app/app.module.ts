@@ -19,6 +19,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginService } from './_service/login.service';
 import { JwtService } from './_service/jwt.service';
+import { CreateAccountComponent } from './account/create-account/create-account.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { JwtService } from './_service/jwt.service';
     FooterComponent,
     ProductDetailsComponent,
     ContactComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

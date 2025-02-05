@@ -36,6 +36,11 @@ export class LoginComponent {
     this.router.navigate(['/reset-password']); // Navigate to reset page
   }
 
+  createAccount(){
+    this.router.navigate(['/create-account']); 
+
+  }
+
   onSubmit() {
     if (this.loginForm.valid) {
       this.loginService.getToken(this.loginForm.value).subscribe({

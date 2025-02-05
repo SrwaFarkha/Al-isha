@@ -9,6 +9,12 @@ export class AccountService {
 
   constructor(private api : ApiService) { }
 
+
+  // Function to create account (sends POST request)
+  createAccount(account: any): Observable<any> {
+    return this.api.post('account',account);
+  }
+
       /**
    * Method to get the shopping cart by account ID.
    * @param accountId - The ID of the account
@@ -61,3 +67,4 @@ export class AccountService {
   }
 
 }
+

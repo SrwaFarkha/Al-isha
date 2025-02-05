@@ -7,6 +7,8 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { ContactComponent } from './contact/contact.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AccountComponent } from './account/account.component';
+import { CreateAccountComponent } from './account/create-account/create-account.component';
+
 
 
 
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'account', component: AccountComponent },
+  { path: 'create-account', component: CreateAccountComponent },
+
 
 
 ];
