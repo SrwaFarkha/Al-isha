@@ -49,7 +49,7 @@ export class LoginComponent {
             console.log(response)
             const token = response.token; 
             this.jwtService.saveToken(token);
-            this.router.navigate(['/account']);
+            this.router.navigate(['/']);
           }
         },
         error: (error: any) => {
