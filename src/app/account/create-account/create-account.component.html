@@ -4,101 +4,60 @@
         <form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()">
             <div class="two-column">
                 <div>
-                    <label>First Name</label>
-                    <input type="text" class="input-field" formControlName="firstName" />
+                    <!-- <label>First Name</label> -->
+                    <input type="text" class="input-field" placeholder="First Name" formControlName="firstName" />
                 </div>
                 <div>
-                    <label>Last Name</label>
-                    <input type="text" class="input-field" formControlName="lastName" />
+                    <!-- <label>Last Name</label> -->
+                    <input type="text" class="input-field" placeholder="Last Name" formControlName="lastName" />
                 </div>
             </div>
 
-            <label>Email</label>
-            <input type="email" class="input-field" formControlName="email" />
+            <div class="one-column">
+        <!-- <label>Email</label> -->
+                <input type="email" class="input-field" placeholder="Email" formControlName="email" />
+            </div>
 
-            <label>Phone Number</label>
-            <input type="text" class="input-field" formControlName="phoneNumber" />
+            <div class="one-column">
+            <!-- <label>Phone Number</label> -->
+                <input type="text" class="input-field" placeholder="Phone Number" formControlName="phoneNumber" />
+            </div>
 
-            <label>Password</label>
-            <input type="password" class="input-field" formControlName="password" />
+            <div class="one-column">
+                
+            <!-- <label>Password</label> -->
+            <input type="password" class="input-field" placeholder="Password" formControlName="password" />
+            </div>
+
 
             <div class="two-column">
                 <div>
-                    <label>Country</label>
-                    <input type="text" class="input-field" formControlName="country" />
+                    <!-- <label>Country</label> -->
+                    <input type="text" class="input-field" placeholder="Country" formControlName="country" />
                 </div>
                 <div>
-                    <label>City</label>
-                    <input type="text" class="input-field" formControlName="city" />
+                    <!-- <label>City</label> -->
+                    <input type="text" class="input-field" placeholder="City" formControlName="city" />
                 </div>
             </div>
 
             <div class="two-column">
                 <div>
-                    <label>Post Number</label>
-                    <input type="text" class="input-field" formControlName="postNumber" />
+                    <!-- <label>Post Number</label> -->
+                    <input type="text" class="input-field" placeholder="Post Number" formControlName="postNumber" />
                 </div>
                 <div>
-                    <label>Street Address</label>
-                    <input type="text" class="input-field" formControlName="streetAddress" />
+                    <!-- <label>Street Address</label> -->
+                    <input type="text" class="input-field" placeholder="Street Address" formControlName="streetAddress" />
                 </div>
             </div>
-
-            <button class="create-button" type="submit" [disabled]="createAccountForm.invalid">
-                Create Account
-            </button>
+            <div class="grid-create-button">
+                <button class="create-button" type="submit" [disabled]="createAccountForm.invalid">
+                    Create
+                </button>
+            </div>
+    
         </form>
     </div>
 </div>
 
-
-<!-- <div class="grid-container">
-    <div class="form-container">
-        <div class="title">Create Account</div>
-
-        <div class="two-column">
-            <div>
-                <label>First Name</label>
-                <input type="text" class="input-field" />
-            </div>
-            <div>
-                <label>Last Name</label>
-                <input type="text" class="input-field" />
-            </div>
-        </div>
-
-        <label>Email</label>
-        <input type="email" class="input-field" />
-
-        <label>Phone Number</label>
-        <input type="text" class="input-field" />
-
-        <label>Password</label>
-        <input type="password" class="input-field" />
-
-        <div class="two-column">
-            <div>
-                <label>Country</label>
-                <input type="text" class="input-field" />
-            </div>
-            <div>
-                <label>City</label>
-                <input type="text" class="input-field" />
-            </div>
-        </div>
-
-        <div class="two-column">
-            <div>
-                <label>Post Number</label>
-                <input type="text" class="input-field" />
-            </div>
-            <div>
-                <label>Street Address</label>
-                <input type="text" class="input-field" />
-            </div>
-        </div>
-        <button class="create-button">
-            Create Account
-        </button>
-    </div>
-</div> -->

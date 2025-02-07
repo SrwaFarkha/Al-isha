@@ -58,13 +58,13 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    outline: none; /* Prevent the default focus outline */
+    outline: none; 
 
   }
 
   form input:focus {
-    border-color: #ccc; /* Keep the border color consistent */
-    box-shadow: none;   /* Remove any shadow */
+    border-color: #ccc;
+    box-shadow: none;   
   }
   
   form button {
@@ -90,18 +90,18 @@
 
   .container {
     display: flex;
-    justify-content: space-between; /* Pushes left to the left and right to the right */
-    align-items: center; /* Aligns items vertically */
+    justify-content: space-between;
+    align-items: center; 
     width: 100%;
   }
   
   .left {
-    flex: 1; /* Takes available space */
-    text-align: left; /* Aligns text to the left */
+    flex: 1;
+    text-align: left;
   }
   
   .right {
-    text-align: right; /* Aligns text to the right */
+    text-align: right;
   }
 
   .forgotten{
