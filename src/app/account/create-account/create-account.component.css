@@ -1,3 +1,9 @@
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
 .grid-create-button{
     width: 100%;
     display: flex;

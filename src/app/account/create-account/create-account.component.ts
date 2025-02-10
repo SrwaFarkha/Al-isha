@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/_service/account.service'; // Import service
 import { Router } from '@angular/router';
+import { JwtService } from 'src/app/_service/jwt.service';
+
 
 
 @Component({
@@ -12,7 +14,7 @@ import { Router } from '@angular/router';
 export class CreateAccountComponent {
   createAccountForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router,
+  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router, private jwtService: JwtService
   ) {
     this.createAccountForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -47,7 +49,10 @@ export class CreateAccountComponent {
       console.log('Sending mapped account data:', accountData);
   
       this.accountService.createAccount(accountData).subscribe({
-        next: () => {          
+        next: (response) => {       
+          if (response.token) {
+            this.jwtService.saveToken(response.token);  
+          }   
           this.router.navigate(['/']);
         },
         error: (err) => {
