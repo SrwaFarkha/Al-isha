@@ -48,7 +48,7 @@ export class LoginComponent {
           if (response) {
             console.log(response)
             const token = response.token; 
-            this.jwtService.saveToken(token);
+            this.jwtService.setToken(token);
             this.router.navigate(['/']);
           }
         },

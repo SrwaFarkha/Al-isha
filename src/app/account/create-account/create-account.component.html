@@ -4,51 +4,88 @@
         <form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()">
             <div class="two-column">
                 <div>
-                    <!-- <label>First Name</label> -->
                     <input type="text" class="input-field" placeholder="First Name" formControlName="firstName" />
+                
+                    <div class="error-container">
+                        <small *ngIf="createAccountForm.get('firstName')?.invalid && createAccountForm.get('firstName')?.touched">
+                            First name is required.
+                        </small>
+                    </div>
                 </div>
                 <div>
-                    <!-- <label>Last Name</label> -->
                     <input type="text" class="input-field" placeholder="Last Name" formControlName="lastName" />
+                    <div class="error-container">
+                        <small *ngIf="createAccountForm.get('lastName')?.invalid && createAccountForm.get('lastName')?.touched">
+                            Last name is required.
+                        </small>
+                    </div>
                 </div>
             </div>
 
             <div class="one-column">
-        <!-- <label>Email</label> -->
                 <input type="email" class="input-field" placeholder="Email" formControlName="email" />
+                <div class="error-container">
+                    <small *ngIf="createAccountForm.get('email')?.invalid && createAccountForm.get('email')?.touched">
+                        Enter a valid email address.
+                    </small>
+                </div>
             </div>
 
             <div class="one-column">
-            <!-- <label>Phone Number</label> -->
                 <input type="text" class="input-field" placeholder="Phone Number" formControlName="phoneNumber" />
+                <div class="error-container">
+                    <small *ngIf="createAccountForm.get('phoneNumber')?.invalid && createAccountForm.get('phoneNumber')?.touched">
+                        Phone number is required.
+                    </small>
+                </div>
             </div>
 
             <div class="one-column">
                 
-            <!-- <label>Password</label> -->
             <input type="password" class="input-field" placeholder="Password" formControlName="password" />
+            <div class="error-container">
+                <small *ngIf="createAccountForm.get('password')?.invalid && createAccountForm.get('password')?.touched">
+                    Password must be at least 6 characters.
+                </small>
+            </div>
             </div>
 
 
             <div class="two-column">
                 <div>
-                    <!-- <label>Country</label> -->
                     <input type="text" class="input-field" placeholder="Country" formControlName="country" />
+                    <div class="error-container">
+                        <small *ngIf="createAccountForm.get('country')?.invalid && createAccountForm.get('country')?.touched">
+                            Country is required.
+                        </small>
+                    </div>
                 </div>
                 <div>
-                    <!-- <label>City</label> -->
                     <input type="text" class="input-field" placeholder="City" formControlName="city" />
+                    <div class="error-container">
+                        <small *ngIf="createAccountForm.get('city')?.invalid && createAccountForm.get('city')?.touched">
+                            City is required.
+                        </small>
+                    </div>
                 </div>
             </div>
 
             <div class="two-column">
                 <div>
-                    <!-- <label>Post Number</label> -->
                     <input type="text" class="input-field" placeholder="Post Number" formControlName="postNumber" />
+                    <div class="error-container">
+                        <small *ngIf="createAccountForm.get('postNumber')?.invalid && createAccountForm.get('postNumber')?.touched">
+                            Post number is required.
+                        </small>
+                    </div>
                 </div>
                 <div>
-                    <!-- <label>Street Address</label> -->
                     <input type="text" class="input-field" placeholder="Street Address" formControlName="streetAddress" />
+                    <div class="error-container">
+                        <small *ngIf="createAccountForm.get('streetAddress')?.invalid && createAccountForm.get('streetAddress')?.touched">
+                            Street address is required.
+                        </small>
+                    </div>
                 </div>
             </div>
             <div class="grid-create-button">

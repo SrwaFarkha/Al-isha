@@ -4,6 +4,22 @@
     margin-top: 5px;
 }
 
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.error-container {
+    min-height: 24px;
+}
+
+.error-container small {
+    color: red;
+    font-size: 12px;
+    display: block;
+}
+
 .grid-create-button{
     width: 100%;
     display: flex;
@@ -13,7 +29,7 @@
 
 .create-button{
     width: 100%;
-    margin: 8px 10px ; 
+    margin: 2px 10px ; 
     height:42px;
     border-color: none;
     background-color: #313131;
@@ -28,7 +44,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px; 
+    padding: 60px 20px 20px 20px; 
     color: #696969;
     background-color: #FCFAF8;
 
@@ -57,17 +73,16 @@
 }
 
 .one-column{
-    padding:10px;
+    padding:0px 10px;
 
 }
 
 .two-column {
     display: flex;
-    gap: 10px;
-    padding:10px;
+    gap: 16px;
+    padding:0px 10px;
 }
 
-/* Ensure inputs take equal width inside two-column div */
 .two-column div {
     flex: 1;
 }

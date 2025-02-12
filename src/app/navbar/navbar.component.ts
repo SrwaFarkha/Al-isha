@@ -16,8 +16,9 @@ export class NavbarComponent {
   constructor(private jwtService: JwtService, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.isLoggedIn = !!this.jwtService.getToken(); 
-    this.cdRef.detectChanges(); // Force update
-
+    this.jwtService.getAuthStatus().subscribe(status => {
+      this.isLoggedIn = status;
+    });
   }
+
 }

@@ -28,39 +28,48 @@ export class CreateAccountComponent {
       streetAddress: ['', Validators.required]
     });
   }
-
+  
   onSubmit() {
-    if (this.createAccountForm.valid) {
-      const accountData = {
-        firstName: this.createAccountForm.value.firstName,
-        lastName: this.createAccountForm.value.lastName,
-        email: this.createAccountForm.value.email,
-        phoneNumber: this.createAccountForm.value.phoneNumber,
-        password: this.createAccountForm.value.password,
-        createdOn: new Date().toISOString(),
-        address: {
-          country: this.createAccountForm.value.country,
-          city: this.createAccountForm.value.city,
-          postNumber: this.createAccountForm.value.postNumber,
-          streetAddress: this.createAccountForm.value.streetAddress
-        }
-      };
-  
-      console.log('Sending mapped account data:', accountData);
-  
-      this.accountService.createAccount(accountData).subscribe({
-        next: (response) => {       
-          if (response.token) {
-            this.jwtService.saveToken(response.token);  
-          }   
-          this.router.navigate(['/']);
-        },
-        error: (err) => {
-          console.error('Error creating account:', err);
+    if (this.createAccountForm.invalid) {
+      Object.keys(this.createAccountForm.controls).forEach((field) => {
+        const control = this.createAccountForm.get(field);
+        if (control?.invalid) {
+          control.markAsTouched(); 
+          control.updateValueAndValidity();
         }
       });
-    } else {
-      console.warn('Form is invalid:', this.createAccountForm.errors);
+      return;
     }
-  } 
+  
+    const accountData = {
+      firstName: this.createAccountForm.value.firstName,
+      lastName: this.createAccountForm.value.lastName,
+      email: this.createAccountForm.value.email,
+      phoneNumber: this.createAccountForm.value.phoneNumber,
+      password: this.createAccountForm.value.password,
+      createdOn: new Date().toISOString(),
+      address: {
+        country: this.createAccountForm.value.country,
+        city: this.createAccountForm.value.city,
+        postNumber: this.createAccountForm.value.postNumber,
+        streetAddress: this.createAccountForm.value.streetAddress,
+      },
+    };
+  
+    console.log('Sending mapped account data:', accountData);
+  
+    this.accountService.createAccount(accountData).subscribe({
+      next: (response) => {
+        if (response.token) {
+          this.jwtService.setToken(response.token);
+        }
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.error('Error creating account:', err);
+      },
+    });
+  }
+   
+  
 }

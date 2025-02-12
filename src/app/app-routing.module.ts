@@ -8,24 +8,30 @@ import { ContactComponent } from './contact/contact.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AccountComponent } from './account/account.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
-
+import { AuthGuard } from './guards/auth.guard';
 
 
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '', pathMatch: 'full' }, // Redirect root URL to home
+  
+  { path: '', component: HomeComponent }, // Public Home Page
   { path: 'products', component: ProductsComponent },
   { path: 'product-details/:productId', component: ProductDetailsComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'account', component: AccountComponent },
+
+  { path: 'login', component: LoginComponent },
   { path: 'create-account', component: CreateAccountComponent },
 
+  // Protected Routes (User must be logged in)
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
 
-
+  // Catch-all: Redirect unknown routes to home or login
+  { path: '**', redirectTo: '' }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

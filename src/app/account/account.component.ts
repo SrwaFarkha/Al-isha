@@ -18,7 +18,7 @@ export class AccountComponent {
   ) {}
 
   logout() {
-    this.jwtService.destroyToken(); // Remove token from storage
-    this.router.navigate(['/login']); // Redirect to login page
+    this.jwtService.logout();
+    this.router.navigate(['/login']);
   }
 }

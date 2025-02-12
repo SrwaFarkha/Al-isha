@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './account/login/login.component';
 import { AccountService } from './_service/account.service';
 import { ApiService } from './_service/api.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
@@ -20,6 +20,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginService } from './_service/login.service';
 import { JwtService } from './_service/jwt.service';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { CreateAccountComponent } from './account/create-account/create-account.
     ApiService,
     LoginService,
     JwtService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
