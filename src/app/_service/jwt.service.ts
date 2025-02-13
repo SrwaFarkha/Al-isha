@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { jwtDecode } from 'jwt-decode'; 
 
 
 
@@ -19,6 +20,20 @@ export class JwtService {
     return localStorage.getItem('authToken');
   }
 
+  getAccountId(): number | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token); 
+        return decoded.accountId || null;
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        return null;
+      }
+    }
+    return null;
+  }
+
 
 
   isAuthenticated(): boolean {
@@ -26,17 +41,17 @@ export class JwtService {
   }
 
   getAuthStatus() {
-    return this.authStatus.asObservable(); // Allow components to listen for changes
+    return this.authStatus.asObservable();
   }
 
   setToken(token: string) {
     localStorage.setItem('authToken', token);
-    this.authStatus.next(true); // Update authentication status
+    this.authStatus.next(true); 
   }
 
   logout() {
     localStorage.removeItem('authToken');
-    this.authStatus.next(false); // Update authentication status
+    this.authStatus.next(false);
   }
 
 }

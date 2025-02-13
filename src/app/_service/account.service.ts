@@ -66,5 +66,14 @@ export class AccountService {
     return this.api.post(`shoppingcart/${accountId}/delete/${productId}`, {});
   }
 
+/**
+ * Method to fetch account details by accountId
+ * @param accountId - The ID of the account
+ */
+getAccountById(accountId: number): Observable<any> {
+  return this.api.get(`account/${accountId}`);
+}
+
+
 }
 
