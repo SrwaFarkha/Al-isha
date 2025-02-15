@@ -33,7 +33,7 @@ export class LoginComponent {
   }
   
   onForgotPassword() {
-    this.router.navigate(['/reset-password']); // Navigate to reset page
+    this.router.navigate(['/reset-password']); 
   }
 
   createAccount(){
@@ -53,7 +53,7 @@ export class LoginComponent {
           }
         },
         error: (error: any) => {
-          if (error.status === 404) {
+          if (error.status === 404 || 401) {
             this.loginErrorText = 'Incorrect email or password';
           } else {
             console.error('An error occurred:', error);
