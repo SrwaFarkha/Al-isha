@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,9 +28,10 @@ export class AccountService {
    * Method to add a product to the shopping cart.
    * @param cartItem - The product details to add to the cart
    */
-   addProductToCart(cartItem: any): Observable<any> {
-    return this.api.post('shoppingcart/add', cartItem);
+  addProductToCart(cartItem: any): Observable<any> {
+    return this.api.post('account/shoppingcart/add', cartItem);
   }
+  
 
   /**
    * Method to empty the shopping cart.

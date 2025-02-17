@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { map, tap } from 'rxjs';
 import { ProductsService } from 'src/app/_service/products.service';
+import { JwtService } from 'src/app/_service/jwt.service';
+import { AccountService } from 'src/app/_service/account.service';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class ProductDetailsComponent {
   productDetails: any;
   product: any = null;
   selectedSize: string | null = null;
-  addProductToShoppingCart: any;
+  // addProductToShoppingCart: any;
   showSizeNotification: boolean = false; 
   showAddedNotification: boolean = false;
   filteredData:any;
@@ -54,7 +56,12 @@ export class ProductDetailsComponent {
     3: 'L',
   };
 
-  constructor(protected productService: ProductsService, protected route: ActivatedRoute) {
+  constructor(
+    protected productService: ProductsService, 
+    protected route: ActivatedRoute, 
+    private accountService: AccountService,
+    private jwtService: JwtService
+  ) {
     this.route.params.subscribe((params) => {
       const productId = params['productId'];
       this.productService.getProduct(productId).subscribe((result) => {
@@ -68,6 +75,15 @@ export class ProductDetailsComponent {
     });
   }
   
+    
+  ngOnInit() {
+    this.productId = this.route.snapshot.paramMap.get('productId');
+
+    this.productService.getProduct(this.productId).subscribe((product) => {
+      this.productDetails = product;
+    });
+  }
+  
   
     handleSizeSelection(size: number): void {
       this.selectedSize = this.sizeMap[size];
@@ -75,19 +91,6 @@ export class ProductDetailsComponent {
       console.log(`Selected size: ${size}`);
     }
     
-
-    // addProductToCart(): void {
-    //   if (!this.selectedSize) {
-    //     this.showSizeNotification = true; // Show notification if no size is selected
-    //     console.log('Please select a size first.');
-    //     return;
-    //   }
-
-    // // Logic to add product to the cart
-    // this.showAddedNotification = true; // Show added notification
-    // console.log(`Product added to cart: ${this.product?.productName}, Size: ${this.selectedSize}`);
-  
-    // }
 
     addProductToCart(): void {
       if (!this.selectedSize) {
@@ -97,37 +100,52 @@ export class ProductDetailsComponent {
         return;
       }
     
+      const accountId = this.jwtService.getAccountId();
+      if (!accountId) {
+        console.error('User not logged in');
+        return;
+      }
+
+        const sizeEnumMap: { [key: string]: number } = {
+          XS: 0,
+          S: 1,
+          M: 2,
+          L: 3,
+        };
+
+        const sizeEnumValue = sizeEnumMap[this.selectedSize];
+
+        if (sizeEnumValue === undefined) {
+          console.error('Invalid size selected.');
+          return;
+        }
+    
       const cartItem = {
+        AccountId: accountId, 
         productId: this.product?.productId,
         productName: this.product?.productName,
         price: this.product?.price,
-        size: this.selectedSize,
+        size: sizeEnumValue, 
         quantity: 1, 
       };
     
-      this.addProductToShoppingCart.addToCart(cartItem).subscribe({
+      this.accountService.addProductToCart(cartItem).subscribe({
         next: () => {
-          this.showSizeNotification = false; 
+          this.showSizeNotification = false;
           this.showAddedNotification = true;
-          console.log(`Product added to cart: ${cartItem.productName}, Size: ${cartItem.size}`);
+          console.log(`Product added to cart: ${cartItem.productName}, Size (Enum): ${cartItem.size}`);
         },
         error: (error) => {
           console.error('Error adding product to cart:', error);
         }
       });
+    
     }
 
   changeMainImage(imageUrl: string): void {
     this.selectedImage = imageUrl;
   }
-  
-  ngOnInit() {
-    this.productId = this.route.snapshot.paramMap.get('productId');
 
-    this.productService.getProduct(this.productId).subscribe((product) => {
-      this.productDetails = product;
-    });
-  }
 
   getProduct(productId:string){
     this.productService.getProduct(productId).subscribe((result) => {
