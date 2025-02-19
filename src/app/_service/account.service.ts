@@ -21,7 +21,7 @@ export class AccountService {
    * @param accountId - The ID of the account
    */
   getShoppingCart(accountId: number): Observable<any> {
-    return this.api.get(`shoppingcart/${accountId}`);
+    return this.api.get(`account/shoppingcart/${accountId}`);
   }
 
    /**

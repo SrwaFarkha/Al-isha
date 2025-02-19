@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/_service/account.service';
+import { JwtService } from 'src/app/_service/jwt.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,43 +8,31 @@ import { AccountService } from 'src/app/_service/account.service';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  shoppingCart: any = null; // Keep it as `any` if you want simplicity, or create an interface like `ShoppingCartDto`
-  accountId: number = 1; // Static for now; replace with dynamic logic as needed
+  shoppingCart: any = [];
+  accountId: number | null = null;
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private jwtService: JwtService) {}
 
   ngOnInit(): void {
-    this.loadShoppingCart();
+    this.accountId = this.jwtService.getAccountId(); // Get logged-in user's accountId
+
+    if (this.accountId !== null) {
+      this.loadShoppingCart();
+    } else {
+      console.error('No valid account ID found. User might not be logged in.');
+    }
   }
 
   loadShoppingCart(): void {
+    if (!this.accountId) return;
+
     this.accountService.getShoppingCart(this.accountId).subscribe({
       next: (data) => {
         this.shoppingCart = data;
         console.log('Shopping cart loaded:', this.shoppingCart);
       },
-      error: (err) => {
-        console.error('Error loading shopping cart:', err);
-      }
+      error: (err) => console.error('Error loading cart:', err)
     });
   }
 
-  addProductToCart(productId: number, size: string, quantity: number): void {
-    const cartItem = {
-      accountId: this.accountId,
-      productId,
-      size,
-      quantity
-    };
-
-    this.accountService.addProductToCart(cartItem).subscribe({
-      next: () => {
-        console.log('Product added successfully');
-        this.loadShoppingCart(); // Refresh shopping cart
-      },
-      error: (err) => {
-        console.error('Error adding product to cart:', err);
-      }
-    });
-  }
 }
