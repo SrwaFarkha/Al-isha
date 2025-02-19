@@ -1,35 +1,42 @@
-<p>shopping-cart works!</p>
-<!-- <div class="grid-container">
-    <div>
-        <div class="title">Cart</div>
-        <div>
-            Photo
-        </div>
-        <div>
-            <div>
-             Namn på produkten
-            </div>
-            <div>
-                Kostnad
-            </div>
-            <div>
-                storlek
-            </div>
-        </div>
-        <div> Increase och decrease</div>
-        <div> Ta bort knapp</div>
-        <div> Total summa</div>
 
-
-        <div>
-            
+<div class="grid-container">
+    <div class="container">
+    <h2>Your cart</h2>
+  
+    <div *ngIf="shoppingCart.length > 0; else emptyCart">
+      <div class="cart-item" *ngFor="let item of shoppingCart">
+        <div class="cart-item-image">
+          <img [src]="item.imageUrl" alt="{{ item.productName }}">
         </div>
-        <p>shopping-cart works!</p>
-
+  
+        <div class="cart-item-details">
+          <h3>{{ item.productName }}</h3>
+          <p>{{ item.size }} / {{ item.color }}</p>
+          <p class="price">£{{ item.price }}</p>
+        </div>
+  
+        <div class="cart-item-quantity">
+            <button (click)="decreaseQuantity(item.productId)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="increaseQuantity(item.productId)">+</button>
+        </div>
+  
+        <div class="cart-item-price">
+          <p>{{ item.price * item.quantity }} kr</p>
+        </div>
+  
+        <div class="cart-item-remove">
+            <button (click)="deleteCartItem(item.productId)">Remove</button>
+        </div>
+      </div>
     </div>
-    <div>
-        2
-        <p>shopping-cart works!</p>
+  
 
-    </div>
-</div> -->
+</div>
+
+
+<ng-template #emptyCart>
+    <p>Your shopping cart is empty.</p>
+  </ng-template>
+
+

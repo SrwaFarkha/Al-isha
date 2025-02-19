@@ -1,18 +1,101 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: auto 30%;
-    gap: 5px;
-    background-color: dodgerblue;
-    padding: 60px;
-    text-align:center;
 
-      height: 100vh; 
+  .container{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+  
   }
   
-  .grid-container > div {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    font-size: 30px;
-    display:grid;
-    align-items: center; 
+  .grid-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 60px 20px 20px 20px; 
+    color: #696969;
+    background-color: #FCFAF8;
+  
   }
+  
+
+  
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+  }
+  
+  .cart-item-image img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .cart-item-details {
+    flex: 2;
+    padding: 0 20px;
+  }
+  
+  .cart-item-details h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .cart-item-details p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .price {
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .cart-item-quantity {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-item-quantity button {
+    background-color: #ccc;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .cart-item-quantity span {
+    margin: 0 10px;
+    font-size: 16px;
+  }
+  
+  .cart-item-price {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 20px;
+  }
+  
+  .cart-item-remove button {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .cart-item-remove button:hover {
+    background-color: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
+  }
+  
