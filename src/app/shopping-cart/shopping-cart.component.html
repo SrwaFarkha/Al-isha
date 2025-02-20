@@ -6,13 +6,15 @@
     <div *ngIf="shoppingCart.length > 0; else emptyCart">
       <div class="cart-item" *ngFor="let item of shoppingCart">
         <div class="cart-item-image">
-          <img [src]="item.imageUrl" alt="{{ item.productName }}">
+          <a [routerLink]="['/shopping-cart', item.productId]">
+            <img [src]="'assets/image/' + item.imageUrl + '.webp'" class="card-img-top" alt="{{ item.productName }}"
+            onerror="this.src='assets/default-image.jpg'">        </a>
         </div>
   
         <div class="cart-item-details">
           <h3>{{ item.productName }}</h3>
-          <p>{{ item.size }} / {{ item.color }}</p>
-          <p class="price">£{{ item.price }}</p>
+          <p>{{ sizeMap[item.size] }}/ {{ item.color }}</p>
+          <p class="price">{{ item.price }} kr</p>
         </div>
   
         <div class="cart-item-quantity">

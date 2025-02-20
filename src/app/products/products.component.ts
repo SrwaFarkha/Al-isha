@@ -13,12 +13,12 @@ export class ProductsComponent {
   productCategories = [];
   filteredData: any;
   selectedCategory: string= "Al-Isha";
-  isFlexColumn = window.innerWidth > 770; // Initialize based on current width
+  isFlexColumn = window.innerWidth > 770;
 
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
-    this.isFlexColumn = window.innerWidth > 770; // Update on resize
+    this.isFlexColumn = window.innerWidth > 770;
   }
   
 

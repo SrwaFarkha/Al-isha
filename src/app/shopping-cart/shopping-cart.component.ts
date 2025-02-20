@@ -11,6 +11,12 @@ export class ShoppingCartComponent implements OnInit {
   shoppingCart: any = [];
   accountId: number | null = null;
 
+  sizeMap = {
+    0: 'XS',
+    1: 'S',
+    2: 'M',
+    3: 'L',
+  };
   constructor(private accountService: AccountService, private jwtService: JwtService) {}
 
   ngOnInit(): void {
