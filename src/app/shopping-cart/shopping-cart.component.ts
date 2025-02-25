@@ -45,13 +45,13 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
-  increaseQuantity(productId: number): void {
-    console.log('Increasing quantity for product:', productId); 
+  increaseQuantity(productId: number, size: number): void {
+    console.log('Increasing quantity for product:', productId, 'Size:', size); 
     if (this.accountId !== null) {
-      this.accountService.increaseCartProduct(this.accountId, productId).subscribe({
+      this.accountService.increaseCartProduct(this.accountId, productId, size).subscribe({
         next: (response) => {
           console.log('API Response:', response);  
-          const cartItem = this.shoppingCart.find(item => item.productId === productId);
+          const cartItem = this.shoppingCart.find(item => item.productId === productId && item.size === size);
           if (cartItem) {
             cartItem.quantity++;
           }
@@ -64,13 +64,13 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
   
-  decreaseQuantity(productId: number): void {
-    console.log('Decreasing quantity for product:', productId);
+  decreaseQuantity(productId: number, size: number): void {
+    console.log('Decreasing quantity for product:', productId, 'Size:', size);
     if (this.accountId !== null) {
-      this.accountService.decreaseCartProduct(this.accountId, productId).subscribe({
+      this.accountService.decreaseCartProduct(this.accountId, productId, size).subscribe({
         next: (response) => {
           console.log('API Response:', response);
-          const cartItem = this.shoppingCart.find(item => item.productId === productId);
+          const cartItem = this.shoppingCart.find(item => item.productId === productId && item.size === size);
           if (cartItem && cartItem.quantity > 1) {
             cartItem.quantity--;
           }
@@ -83,10 +83,10 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  deleteCartItem(productId: number): void {
+  deleteCartItem(productId: number, size: number): void {
     if (!this.accountId) return;
 
-    this.accountService.deleteCartItem(this.accountId, productId).subscribe({
+    this.accountService.deleteCartItem(this.accountId, productId, size).subscribe({
       next: (response) => {
         console.log('Cart item removed:', response);
         this.loadShoppingCart();  

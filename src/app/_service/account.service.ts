@@ -46,8 +46,8 @@ export class AccountService {
    * @param accountId - The ID of the account
    * @param productId - The ID of the product
    */
-  increaseCartProduct(accountId: number, productId: number): Observable<any> {
-    return this.api.post(`account/shoppingcart/increase/${accountId}/${productId}`, {}, { responseType: 'text' });
+  increaseCartProduct(accountId: number, productId: number, size: number): Observable<any> {
+    return this.api.post(`account/shoppingcart/increase/${accountId}/${productId}/${size}`, {}, { responseType: 'text' });
   }
 
   /**
@@ -55,8 +55,8 @@ export class AccountService {
    * @param accountId - The ID of the account
    * @param productId - The ID of the product
    */
-  decreaseCartProduct(accountId: number, productId: number): Observable<any> {
-    return this.api.post(`account/shoppingcart/decrease/${accountId}/${productId}`, {}, { responseType: 'text' });
+  decreaseCartProduct(accountId: number, productId: number, size: number): Observable<any> {
+    return this.api.post(`account/shoppingcart/decrease/${accountId}/${productId}/${size}`, {}, { responseType: 'text' });
   }
 
   /**
@@ -64,8 +64,8 @@ export class AccountService {
    * @param accountId - The ID of the account
    * @param productId - The ID of the product
    */
-  deleteCartItem(accountId: number, productId: number): Observable<any> {
-    return this.api.post(`account/shoppingcart/delete-cartitem/${accountId}/${productId}`, {}, { responseType: 'text' });
+  deleteCartItem(accountId: number, productId: number, size: number): Observable<any> {
+    return this.api.post(`account/shoppingcart/delete-cartitem/${accountId}/${productId}/${size}`, {}, { responseType: 'text' });
   }
 
 /**
