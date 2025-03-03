@@ -50,11 +50,7 @@ export class ShoppingCartComponent implements OnInit {
     if (this.accountId !== null) {
       this.accountService.increaseCartProduct(this.accountId, productId, size).subscribe({
         next: (response) => {
-          console.log('API Response:', response);  
-          const cartItem = this.shoppingCart.find(item => item.productId === productId && item.size === size);
-          if (cartItem) {
-            cartItem.quantity++;
-          }
+          this.loadShoppingCart();
         },
         error: (err) => {
           console.error('Error increasing quantity:', err);
@@ -69,11 +65,7 @@ export class ShoppingCartComponent implements OnInit {
     if (this.accountId !== null) {
       this.accountService.decreaseCartProduct(this.accountId, productId, size).subscribe({
         next: (response) => {
-          console.log('API Response:', response);
-          const cartItem = this.shoppingCart.find(item => item.productId === productId && item.size === size);
-          if (cartItem && cartItem.quantity > 1) {
-            cartItem.quantity--;
-          }
+          this.loadShoppingCart();
         },
         error: (err) => {
           console.error('Error decreasing quantity:', err); 
