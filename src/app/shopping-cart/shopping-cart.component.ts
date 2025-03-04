@@ -9,6 +9,8 @@ import { JwtService } from 'src/app/_service/jwt.service';
 })
 export class ShoppingCartComponent implements OnInit {
   shoppingCart: any = [];
+  shoppingCartTotalPrice: number = 0;
+
   accountId: number | null = null;
 
   sizeMap = {
@@ -36,9 +38,14 @@ export class ShoppingCartComponent implements OnInit {
       next: (data) => {
         if (data && data.products) {
           this.shoppingCart = data.products; 
+          this.shoppingCartTotalPrice = data.shoppingCartTotalPrice;
           console.log('Shopping cart loaded:', this.shoppingCart);
+          console.log('Total Price:', this.shoppingCartTotalPrice);
+
         } else {
           this.shoppingCart = [];
+          this.shoppingCartTotalPrice = 0;
+
         }
       },
       error: (err) => console.error('Error loading cart:', err)

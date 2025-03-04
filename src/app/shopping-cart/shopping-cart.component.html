@@ -1,39 +1,52 @@
 
 <div class="grid-container">
-    <div class="container">
+  <div class="container">
     <h2>Your cart</h2>
-  
-    <div *ngIf="shoppingCart.length > 0; else emptyCart">
-      <div class="cart-item" *ngFor="let item of shoppingCart">
-        <div class="cart-item-image">
-          <a [routerLink]="['/shopping-cart', item.productId]">
-            <img [src]="'assets/image/' + item.imageUrl + '.webp'" class="card-img-top" alt="{{ item.productName }}"
-            onerror="this.src='assets/default-image.jpg'">        </a>
-        </div>
-  
-        <div class="cart-item-details">
-          <h3>{{ item.productName }}</h3>
-          <p>{{ sizeMap[item.size] }}/ {{ item.color }}</p>
-          <p class="price">{{ item.price }} kr</p>
-        </div>
-  
-        <div class="cart-item-quantity">
-            <button (click)="decreaseQuantity(item.productId, item.size)">-</button>
-            <span>{{ item.quantity }}</span>
-            <button (click)="increaseQuantity(item.productId, item.size)">+</button>
+    
+    <div class="cart-content">
+      <div class="left-side" *ngIf="shoppingCart.length > 0; else emptyCart">
+        <div class="cart-item" *ngFor="let item of shoppingCart">
+          <div class="cart-item-image">
+            <a [routerLink]="['/shopping-cart', item.productId]">
+              <img [src]="'assets/image/' + item.imageUrl + '.webp'" class="card-img-top" alt="{{ item.productName }}"
+              onerror="this.src='assets/default-image.jpg'">        </a>
           </div>
-  
-        <div class="cart-item-price">
-          <p>{{ item.price * item.quantity }} kr</p>
-        </div>
-  
-        <div class="cart-item-remove">
-            <button (click)="deleteCartItem(item.productId, item.size)">Remove</button>
+          <div class="cart-item-details">
+            <h3>{{ item.productName }}</h3>
+            <p>{{ sizeMap[item.size] }}/ {{ item.color }}</p>
+            <p class="price">{{ item.price }} kr</p>
+          </div>
+          <div class="cart-item-quantity">
+              <button (click)="decreaseQuantity(item.productId, item.size)">-</button>
+              <span>{{ item.quantity }}</span>
+              <button (click)="increaseQuantity(item.productId, item.size)">+</button>
+          </div>
+          <div class="cart-item-price">
+            <p>{{ item.price * item.quantity }} kr</p>
+          </div>
+          <div class="cart-item-remove">
+              <button (click)="deleteCartItem(item.productId, item.size)">
+                <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#696969"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19 5L5 19M5.00001 5L19 19" stroke="#696969" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+              </button>
+          </div>
         </div>
       </div>
+      <div class="right-side">
+        <p>Order Summary</p>
+        <div class="right-container">
+          <div class="r-side">
+            <p>Subtotal</p>
+            <p>Shipping</p>
+          </div>
+          <div class="l-side">
+            <p>{{shoppingCartTotalPrice}} kr</p>
+            <p>0 kr</p>
+          </div>
+        </div>
+        <button class="checkout-button">Checkout</button>
+      </div>
     </div>
-  
-
+  </div>
 </div>
 
 
