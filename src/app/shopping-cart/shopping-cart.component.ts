@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/_service/account.service';
+import { ShoppingCartService } from 'src/app/_service/shopping-cart.service';
 import { JwtService } from 'src/app/_service/jwt.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class ShoppingCartComponent implements OnInit {
     2: 'M',
     3: 'L',
   };
-  constructor(private accountService: AccountService, private jwtService: JwtService) {}
+  constructor(private shoppingCartService: ShoppingCartService, private jwtService: JwtService) {}
 
   ngOnInit(): void {
     this.accountId = this.jwtService.getAccountId();
@@ -34,7 +34,7 @@ export class ShoppingCartComponent implements OnInit {
   loadShoppingCart(): void {
     if (!this.accountId) return;
 
-    this.accountService.getShoppingCart(this.accountId).subscribe({
+    this.shoppingCartService.getShoppingCart(this.accountId).subscribe({
       next: (data) => {
         if (data && data.products) {
           this.shoppingCart = data.products; 
@@ -55,7 +55,7 @@ export class ShoppingCartComponent implements OnInit {
   increaseQuantity(productId: number, size: number): void {
     console.log('Increasing quantity for product:', productId, 'Size:', size); 
     if (this.accountId !== null) {
-      this.accountService.increaseCartProduct(this.accountId, productId, size).subscribe({
+      this.shoppingCartService.increaseCartProduct(this.accountId, productId, size).subscribe({
         next: (response) => {
           this.loadShoppingCart();
         },
@@ -70,7 +70,7 @@ export class ShoppingCartComponent implements OnInit {
   decreaseQuantity(productId: number, size: number): void {
     console.log('Decreasing quantity for product:', productId, 'Size:', size);
     if (this.accountId !== null) {
-      this.accountService.decreaseCartProduct(this.accountId, productId, size).subscribe({
+      this.shoppingCartService.decreaseCartProduct(this.accountId, productId, size).subscribe({
         next: (response) => {
           this.loadShoppingCart();
         },
@@ -85,7 +85,7 @@ export class ShoppingCartComponent implements OnInit {
   deleteCartItem(productId: number, size: number): void {
     if (!this.accountId) return;
 
-    this.accountService.deleteCartItem(this.accountId, productId, size).subscribe({
+    this.shoppingCartService.deleteCartItem(this.accountId, productId, size).subscribe({
       next: (response) => {
         console.log('Cart item removed:', response);
         this.loadShoppingCart();  

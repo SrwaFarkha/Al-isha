@@ -3,7 +3,7 @@ import { ActivatedRoute} from '@angular/router';
 import { map, tap } from 'rxjs';
 import { ProductsService } from 'src/app/_service/products.service';
 import { JwtService } from 'src/app/_service/jwt.service';
-import { AccountService } from 'src/app/_service/account.service';
+import { ShoppingCartService } from 'src/app/_service/shopping-cart.service';
 
 
 @Component({
@@ -59,7 +59,7 @@ export class ProductDetailsComponent {
   constructor(
     protected productService: ProductsService, 
     protected route: ActivatedRoute, 
-    private accountService: AccountService,
+    private shoppingCartService: ShoppingCartService,
     private jwtService: JwtService
   ) {
     this.route.params.subscribe((params) => {
@@ -129,7 +129,7 @@ export class ProductDetailsComponent {
         quantity: 1, 
       };
     
-      this.accountService.addProductToCart(cartItem).subscribe({
+      this.shoppingCartService.addProductToCart(cartItem).subscribe({
         next: () => {
           this.showSizeNotification = false;
           this.showAddedNotification = true;
